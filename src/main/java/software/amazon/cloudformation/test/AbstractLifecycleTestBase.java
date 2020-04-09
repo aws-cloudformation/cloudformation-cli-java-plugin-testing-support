@@ -1,8 +1,10 @@
 package software.amazon.cloudformation.test;
 
 import org.junit.jupiter.api.TestInstance;
-import org.mockito.Mockito;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import software.amazon.awssdk.auth.credentials.AwsSessionCredentials;
+import software.amazon.cloudformation.loggers.LogPublisher;
 import software.amazon.cloudformation.proxy.AmazonWebServicesClientProxy;
 import software.amazon.cloudformation.proxy.Credentials;
 import software.amazon.cloudformation.proxy.DelayFactory;
@@ -19,7 +21,15 @@ import java.time.Duration;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public abstract class AbstractLifecycleTestBase {
 
-    private final LoggerProxy loggerProxy = Mockito.mock(LoggerProxy.class);
+    private final LoggerProxy loggerProxy = new LoggerProxy() {{
+        addLogPublisher(new LogPublisher(m -> m) {
+            private final Logger logger = LoggerFactory.getLogger(getClass().getSimpleName());
+            @Override
+            protected void publishMessage(String message) {
+                logger.info(message);
+            }
+        });
+    }};
     private final AwsSessionCredentials sessionCredentials;
     private final AmazonWebServicesClientProxy proxy;
 

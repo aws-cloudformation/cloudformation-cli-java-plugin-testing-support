@@ -138,7 +138,7 @@
  *     public class LifecycleTest extends KMSKeyEnabledServiceIntegrationTestBase {
  *
  *         //
- *         // At the annotation software.amazon.cloudformation.test.InjectSessionCredentials to the
+ *         // At the annotation software.amazon.cloudformation.test.annotations.InjectSessionCredentials to the
  *         // constructor. This will inject the role's credentials
  *         //
  *         public LifecycleTest(<b>&#064;InjectSessionCredentials(profile = "cfn-integration")</b> AwsSessionCredentials awsCredentials) {

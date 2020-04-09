@@ -12,7 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
-package software.amazon.cloudformation.test;
+package software.amazon.cloudformation.test.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -20,6 +20,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 import org.junit.jupiter.api.Tag;
+import software.amazon.cloudformation.test.InjectProfileCredentials;
 
 /**
  * Annotation that can used on method or constructor parameters to inject AWS
