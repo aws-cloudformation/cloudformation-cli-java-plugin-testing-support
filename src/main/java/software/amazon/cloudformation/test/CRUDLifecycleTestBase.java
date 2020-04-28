@@ -6,7 +6,6 @@ import org.junit.jupiter.api.TestInstance;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.opentest4j.AssertionFailedError;
 import software.amazon.awssdk.auth.credentials.AwsSessionCredentials;
 import software.amazon.cloudformation.Action;
 import software.amazon.cloudformation.exceptions.ResourceNotFoundException;
@@ -27,8 +26,6 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 
 @NotThreadSafe
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -230,6 +227,15 @@ public abstract class CRUDLifecycleTestBase<ResourceModelT, CallbackT extends St
                             }
                         )
                     );
+                    //
+                    // https://junit.org/junit5/docs/5.0.2/api/org/junit/jupiter/api/DynamicTest.html. This is verifying
+                    // that reading the state after Create(C)/Update(U) operation is consistent with the desired state that we
+                    // sent in. If the C/U is expected to fail, then we check to see that the previous desired state is
+                    // indeed equal. The other thing this forces is it ensures that C/U handlers do delegate to Read(R)
+                    // handlers post application of configuration. This prevents the set of bugs like missing primary
+                    // identifiers etc. that R always provides ensuring all read-only attributes are being communicated
+                    // post a C/U operation.
+                    //
                     if (step.action != Action.DELETE) {
                         tests.add(
                             //

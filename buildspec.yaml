@@ -10,4 +10,3 @@ phases:
     commands:
       - pre-commit run --all-files
       - mvn clean verify --no-transfer-progress
-      - mvn clean verify --no-transfer-progress

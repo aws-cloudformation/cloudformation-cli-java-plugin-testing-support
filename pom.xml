@@ -8,7 +8,7 @@
     <groupId>software.amazon.cloudformation.test</groupId>
     <artifactId>cloudformation-cli-java-plugin-testing-support</artifactId>
     <name>aws-cloudformation-local-test</name>
-    <version>1.0</version>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -81,7 +81,7 @@
         <dependency>
             <groupId>software.amazon.cloudformation</groupId>
             <artifactId>aws-cloudformation-rpdk-java-plugin</artifactId>
-            <version>1.0.3</version>
+            <version>1.0.4</version>
         </dependency>
 
         <dependency>
@@ -145,7 +145,7 @@
                 <version>${maven-javadoc-plugin.version}</version>
                 <configuration>
                     <show>public</show>
-                    <bottom><![CDATA[Copyright &#169; 2019 Amazon Web Services, Inc. All Rights Reserved.]]></bottom>
+                    <bottom><![CDATA[Copyright &#169; Amazon Web Services, Inc. All Rights Reserved.]]></bottom>
                 </configuration>
                 <executions>
                     <execution>

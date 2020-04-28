@@ -74,7 +74,7 @@
  *             Download the access_key, secret_key for this user and add it to the credentials file under
  *             cfn-assume-role
  *      </li>
- *      <li><u>Create cfn-integration role with the con</u></li>
+ *      <li><u>Create cfn-integration role with the reference to the managed policy we created above.</u></li>
  *      <li><u>Update your poml.xml</u>
  *             Here is how to use this for unit testing. First add the dependency to you maven <u>pom.xml</u>
  *
