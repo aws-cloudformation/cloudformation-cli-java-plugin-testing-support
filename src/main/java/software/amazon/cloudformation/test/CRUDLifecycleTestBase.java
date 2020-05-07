@@ -70,7 +70,7 @@ public abstract class CRUDLifecycleTestBase<ResourceModelT, CallbackT extends St
     @lombok.Getter
     @lombok.EqualsAndHashCode
     @lombok.ToString
-    public final class ResourceModels {
+    public final class ResourceLifecycleSteps {
         private final List<ModelStepExpectation> modelSteps;
         private final String group;
         private final Map<Action, HandlerInvoke<ResourceModelT, CallbackT>> invokers;
@@ -123,11 +123,11 @@ public abstract class CRUDLifecycleTestBase<ResourceModelT, CallbackT extends St
                 Action.UPDATE, OperationStatus.FAILED, null, model));
         }
 
-        public ResourceModels delete(ResourceModelT model) {
+        public ResourceLifecycleSteps delete(ResourceModelT model) {
             return delete(() -> model);
         }
 
-        public ResourceModels delete(Supplier<ResourceModelT> model) {
+        public ResourceLifecycleSteps delete(Supplier<ResourceModelT> model) {
             return add(new ModelStepExpectation(
                 Action.DELETE, OperationStatus.SUCCESS, null, model)).build();
         }
@@ -156,12 +156,12 @@ public abstract class CRUDLifecycleTestBase<ResourceModelT, CallbackT extends St
             return this;
         }
 
-        public ResourceModels build() {
-            return new ResourceModels(modelSteps, group, invokers);
+        public ResourceLifecycleSteps build() {
+            return new ResourceLifecycleSteps(modelSteps, group, invokers);
         }
     }
 
-    protected abstract List<ResourceModels> testSeed();
+    protected abstract List<ResourceLifecycleSteps> testSeed();
 
     protected abstract Map<Action, HandlerInvoke<ResourceModelT, CallbackT>> handlers();
 
@@ -169,7 +169,7 @@ public abstract class CRUDLifecycleTestBase<ResourceModelT, CallbackT extends St
 
     @TestFactory
     final List<DynamicTest> CRUD_Tests() {
-        List<DynamicTest> tests_ = Objects.requireNonNull(testSeed()).stream()
+        return Objects.requireNonNull(testSeed()).stream()
             .flatMap(models -> {
                 final Map<Action, HandlerInvoke<ResourceModelT, CallbackT>> handlers = models.getInvokers();
                 final List<ModelStepExpectation> expectations = models.getModelSteps();
@@ -262,7 +262,6 @@ public abstract class CRUDLifecycleTestBase<ResourceModelT, CallbackT extends St
                 }
                 return tests.stream();
             }).collect(Collectors.toList());
-        return tests_;
     }
 
 

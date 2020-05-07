@@ -33,13 +33,10 @@ import software.amazon.awssdk.services.kms.model.ScheduleKeyDeletionRequest;
 import software.amazon.cloudformation.proxy.CallChain;
 import software.amazon.cloudformation.proxy.DelayFactory;
 import software.amazon.cloudformation.proxy.ProgressEvent;
-import software.amazon.cloudformation.proxy.ProxyClient;
 import software.amazon.cloudformation.proxy.StdCallbackContext;
 import software.amazon.cloudformation.proxy.delay.Constant;
 
 import java.time.Duration;
-import java.util.Map;
-import java.util.function.Function;
 import java.util.function.Predicate;
 
 /**
@@ -194,7 +191,7 @@ public abstract class KMSKeyEnabledServiceIntegrationTestBase extends AbstractLi
     void describeAndEnableKey() {
         //
         // We need to account for KMS propagation delays. So each step stabilizes returns true
-        // when 4 consecutive attempts to describe and check succeeds to reliably converge.
+        // when 6 consecutive attempts to describe and check succeeds to reliably converge.
         //
         final String trackingKeyName = "describeAndEnableKey";
         final DescribeKeyRequest describeKeyRequest = DescribeKeyRequest.builder().keyId(kmsKeyId).build();

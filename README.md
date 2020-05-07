@@ -19,7 +19,7 @@ sample for now this can be used for injecting credentials using the role based p
  ...
 
  ~/.aws/config
- [profilei cfn-integration]
+ [profile cfn-integration]
  role_arn = arn:aws:iam::<AWS_ACCOUNT_ID>:role/<ROLE_NAME>
  source_profile = cfn-assume-role
 ```
