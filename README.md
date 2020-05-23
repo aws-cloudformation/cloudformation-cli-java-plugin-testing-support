@@ -103,7 +103,7 @@ sample for now this can be used for injecting credentials using the role based p
 <b>How to use it?</b>
 <p>
 Sample code illustrating how to use this setup with KMS. To make scheduling the key for delete in case of abort to
-testing the key is aliased using the alias name [KEY_ALIAS](src/main/software/amazon/cloudformation/test/KMSKeyEnabledServiceIntegrationTestBase.java)
+testing the key is aliased using the alias name [KEY_ALIAS](src/main/java/software/amazon/cloudformation/test/KMSKeyEnabledServiceIntegrationTestBase.java)
 The test when it runs to completion will automatically move the KMS key for delete. If test is rerun
 the KMS key will be made active again for the duration of he test run and disable and scheduled to be deleted.
 Regardless of how many times we run these tests there is only one key with the alias managed in the account.
@@ -252,15 +252,14 @@ public class CRUDLifecycleTest extends CRUDLifecycleTestBase<ResourceModel, Call
 
 These classes use the annotation and named profiles described above to make testing against live AWS services easy.
 
-[software.amazon.cloudformation.test.KMSKeyEnabledServiceIntegrationTestBase](src/main/software/amazon/cloudformation/test/KMSKeyEnabledServiceIntegrationTestBase.java)
-[software.amazon.cloudformation.test.AbstractLifecycleTestBase](src/main/software/amazon/cloudformation/test/AbstractLifecycleTestBase.java)
+[software.amazon.cloudformation.test.KMSKeyEnabledServiceIntegrationTestBase](src/main/java/software/amazon/cloudformation/test/KMSKeyEnabledServiceIntegrationTestBase.java)
+[software.amazon.cloudformation.test.AbstractLifecycleTestBase](src/main/java/software/amazon/cloudformation/test/AbstractLifecycleTestBase.java)
 
 *Local Unit Testing*
 
 This class provides the step plumbing
 
-[software.amazon.cloudformation.test.AbstractMockTestBase](src/main/software/amazon/cloudformation/test/AbstractMockTestBase.java)
-
+[software.amazon.cloudformation.test.AbstractMockTestBase](src/main/java/software/amazon/cloudformation/test/AbstractMockTestBase.java)
 
 ## License
 
