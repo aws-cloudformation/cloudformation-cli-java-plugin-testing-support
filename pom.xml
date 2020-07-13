@@ -10,6 +10,32 @@
     <name>aws-cloudformation-local-test</name>
     <version>1.0.0</version>
     <packaging>jar</packaging>
+    <description>This provides an easier foundation for testing handlers for CRUD</description>
+    <url>https://github.com/aws-cloudformation/cloudformation-cli-java-plugin-testing-support</url>
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://aws.amazon.com/apache2.0</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>aws-cloudformation-developers</id>
+            <organization>Amazon Web Services</organization>
+            <organizationUrl>https://aws.amazon.com</organizationUrl>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:https://github.com/aws-cloudformation/cloudformation-cli-java-plugin-testing-support.git</connection>
+        <developerConnection>scm:git:git@github.com:aws-cloudformation/cloudformation-cli-java-plugin-testing-support.git</developerConnection>
+        <url>https://github.com/aws-cloudformation/cloudformation-cli-java-plugin-testing-support</url>
+    </scm>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
