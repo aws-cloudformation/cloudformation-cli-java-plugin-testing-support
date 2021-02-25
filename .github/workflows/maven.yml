@@ -1,5 +1,5 @@
 # This workflow will install dependencies, run tests for both plugin and library components
-name: CloudFormation CLI  Java Plugin Pull Request CI
+name: CloudFormation CLI  Java Plugin Testing Support Pull Request CI
 
 on:
   push:
@@ -9,9 +9,6 @@ on:
 
 jobs:
   build:
-    env:
-      AWS_DEFAULT_REGION: us-east-1
-      AWS_REGION: us-east-1
     strategy:
       matrix:
         java: [8, 11]
@@ -29,13 +26,9 @@ jobs:
     - name: Install python dependencies
       run: |
         pip install --upgrade 'attrs==19.2.0' wheel -r https://raw.githubusercontent.com/aws-cloudformation/cloudformation-cli/master/requirements.txt
-    - name: Install cloudformation-cli-java-plugin
-      run: |
-        pip install .
     - name: Run pre-commit, twine checks for cloudformation-cli-java-plugin
       run: |
         pre-commit run --all-files
     - name: Verify java package
       run:
         mvn verify
-  
